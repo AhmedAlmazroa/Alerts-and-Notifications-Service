@@ -12,13 +12,13 @@ All endpoints are relative to the Base URL.
 
 ### Response Format (All Endpoints)
 #### Success
-json
+
 {
   "status": "sent",
   "alert": { }
 }
 #### Error
-json
+
 {
   "status": "error",
   "message": "Readable error message"
