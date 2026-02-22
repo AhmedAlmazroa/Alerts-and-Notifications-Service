@@ -13,10 +13,10 @@ All endpoints are relative to the Base URL.
 ### Response Format (All Endpoints)
 #### Success
 
-"{
+'{
   "status": "sent",
   "alert": { }
-}"
+}'
 #### Error
 
 {
