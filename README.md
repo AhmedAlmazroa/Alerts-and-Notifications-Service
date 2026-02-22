@@ -84,6 +84,7 @@ Duplicate event:
   "message": "Duplicate ignored"
 }
 ```
+
 ```mermaid
 sequenceDiagram
 participant Client as Client Application
