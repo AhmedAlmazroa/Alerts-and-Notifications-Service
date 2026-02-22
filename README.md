@@ -1,17 +1,17 @@
 # Alerts-and-Notifications-Service
-##Communication Contract – Alerts & Notifications Service (REST API)
+## Communication Contract – Alerts & Notifications Service (REST API)
 
-###Overview
+### Overview
 The Alerts & Notifications Service provides REST API functionality to send deadline reminders, system condition alerts, and general user notifications. The service validates incoming requests, prevents duplicate alerts, and stores alert records. All communication uses JSON over HTTPS, and API key authentication is required for protected operations.
 
-###Base URLs
+### Base URLs
 Local:  
 http://localhost:5001
 
 All endpoints are relative to the Base URL.
 
-###Response Format (All Endpoints)
-####Success
+### Response Format (All Endpoints)
+#### Success
 json
 {
   "status": "sent",
@@ -23,8 +23,8 @@ json
   "status": "error",
   "message": "Readable error message"
 }
-###Endpoints
-#####Send Alert
+### Endpoints
+##### Send Alert
 POST /alerts
 Example:  
 POST http://localhost:5001/alerts
@@ -80,14 +80,14 @@ json
   "status": "sent",
   "message": "Duplicate ignored"
 }
-###Authentication Rules
+### Authentication Rules
 All POST requests require a valid API key in the Authorization header.
 
 Invalid or expired API keys return HTTP 401 Unauthorized.
 
 Sensitive user data is never returned in responses.
 
-###Error Codes
+### Error Codes
 Your service may return readable error messages such as:
 
 Missing required alert information.
@@ -98,5 +98,5 @@ Duplicate alert ignored
 
 Invalid request format
 
-###Contract Stability
+### Contract Stability
 This communication contract — including endpoints, request structure, headers, response format, and error messages — must remain stable during the sprint unless the entire team agrees to changes.
