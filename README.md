@@ -28,7 +28,7 @@ All endpoints are relative to the Base URL.
 }
 ```
 ### Endpoints
-##### Send Alert
+### Send Alert
 POST /alerts
 Example:  
 POST http://localhost:5001/alerts
@@ -48,7 +48,7 @@ Authorization: Bearer <API_KEY>
   "eventId": "task-98765"
 }
 ```
-#### Success Response:
+### Success Response:
 ```json
 {
   "status": "sent",
@@ -61,9 +61,9 @@ Authorization: Bearer <API_KEY>
   }
 }
 ```
-#### Error Responses:
+### Error Responses:
 
-#### Missing fields:
+### Missing fields:
 ```json
 {
   "status": "error",
@@ -84,6 +84,27 @@ Duplicate event:
   "message": "Duplicate ignored"
 }
 ```
+```mermaid
+sequenceDiagram
+    participant Client as Client Application
+    participant Alerts as Alerts Service
+
+    Client->>Alerts: POST /alerts\nAuthorization: Bearer API_KEY\nJSON Body
+    Alerts->>Alerts: Validate API key
+    Alerts->>Alerts: Validate required fields
+    Alerts->>Alerts: Check for duplicate eventId
+
+    alt Valid request
+        Alerts-->>Client: 200 OK\n{ "status": "sent", "alert": {...} }
+    else Missing fields
+        Alerts-->>Client: 400 Bad Request\n{ "status": "error", "message": "Missing required alert information." }
+    else Invalid API key
+        Alerts-->>Client: 401 Unauthorized\n{ "status": "error", "message": "Unauthorized" }
+    else Duplicate event
+        Alerts-->>Client: 200 OK\n{ "status": "sent", "message": "Duplicate ignored" }
+    end
+
+
 ### Authentication Rules
 All POST requests require a valid API key in the Authorization header.
 Invalid or expired API keys return HTTP 401 Unauthorized.
