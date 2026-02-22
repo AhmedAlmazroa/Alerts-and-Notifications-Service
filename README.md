@@ -17,7 +17,7 @@ json
   "status": "sent",
   "alert": { }
 }
-####Error
+#### Error
 json
 {
   "status": "error",
@@ -29,14 +29,13 @@ POST /alerts
 Example:  
 POST http://localhost:5001/alerts
 
-Headers:
+#### Headers:
 
-Code
 Content-Type: application/json
 Authorization: Bearer <API_KEY>
-Body:
 
-json
+#### Body:
+
 {
   "userId": "12345",
   "alertType": "deadline",
@@ -44,9 +43,8 @@ json
   "priority": "high",
   "eventId": "task-98765"
 }
-Success Response:
+#### Success Response:
 
-json
 {
   "status": "sent",
   "alert": {
@@ -57,45 +55,37 @@ json
     "eventId": "task-98765"
   }
 }
-Error Responses:
+#### Error Responses:
 
-Missing fields:
+#### Missing fields:
 
-json
 {
   "status": "error",
   "message": "Missing required alert information."
 }
 Invalid API key:
 
-json
 {
   "status": "error",
   "message": "Unauthorized"
 }
 Duplicate event:
 
-json
 {
   "status": "sent",
   "message": "Duplicate ignored"
 }
 ### Authentication Rules
 All POST requests require a valid API key in the Authorization header.
-
 Invalid or expired API keys return HTTP 401 Unauthorized.
-
 Sensitive user data is never returned in responses.
 
 ### Error Codes
-Your service may return readable error messages such as:
+Service may return readable error messages such as:
 
 Missing required alert information.
-
 Unauthorized
-
 Duplicate alert ignored
-
 Invalid request format
 
 ### Contract Stability
