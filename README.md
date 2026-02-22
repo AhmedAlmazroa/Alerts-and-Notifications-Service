@@ -21,10 +21,12 @@ All endpoints are relative to the Base URL.
 ```
 #### Error
 
+```json
 {
   "status": "error",
   "message": "Readable error message"
 }
+```
 ### Endpoints
 ##### Send Alert
 POST /alerts
@@ -37,7 +39,7 @@ Content-Type: application/json
 Authorization: Bearer <API_KEY>
 
 #### Body:
-
+```json
 {
   "userId": "12345",
   "alertType": "deadline",
@@ -45,8 +47,9 @@ Authorization: Bearer <API_KEY>
   "priority": "high",
   "eventId": "task-98765"
 }
+```
 #### Success Response:
-
+```json
 {
   "status": "sent",
   "alert": {
@@ -57,26 +60,30 @@ Authorization: Bearer <API_KEY>
     "eventId": "task-98765"
   }
 }
+```
 #### Error Responses:
 
 #### Missing fields:
-
+```json
 {
   "status": "error",
   "message": "Missing required alert information."
 }
+```
 Invalid API key:
-
+```json
 {
   "status": "error",
   "message": "Unauthorized"
 }
+```
 Duplicate event:
-
+```json
 {
   "status": "sent",
   "message": "Duplicate ignored"
 }
+```
 ### Authentication Rules
 All POST requests require a valid API key in the Authorization header.
 Invalid or expired API keys return HTTP 401 Unauthorized.
