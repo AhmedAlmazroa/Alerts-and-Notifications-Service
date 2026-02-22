@@ -86,24 +86,24 @@ Duplicate event:
 ```
 ```mermaid
 sequenceDiagram
-    participant Client as Client Application
-    participant Alerts as Alerts Service
+participant Client as Client Application
+participant Alerts as Alerts Service
 
-    Client->>Alerts: POST /alerts\nAuthorization: Bearer API_KEY\nJSON Body
-    Alerts->>Alerts: Validate API key
-    Alerts->>Alerts: Validate required fields
-    Alerts->>Alerts: Check for duplicate eventId
+Client->>Alerts: POST /alerts\nAuthorization: Bearer API_KEY\nJSON Body
+Alerts->>Alerts: Validate API key
+Alerts->>Alerts: Validate required fields
+Alerts->>Alerts: Check for duplicate eventId
 
-    alt Valid request
-        Alerts-->>Client: 200 OK\n{ "status": "sent", "alert": {...} }
-    else Missing fields
-        Alerts-->>Client: 400 Bad Request\n{ "status": "error", "message": "Missing required alert information." }
-    else Invalid API key
-        Alerts-->>Client: 401 Unauthorized\n{ "status": "error", "message": "Unauthorized" }
-    else Duplicate event
+alt Valid request
+  Alerts-->>Client: 200 OK\n{ "status": "sent", "alert": {...} }
+else Missing fields
+  Alerts-->>Client: 400 Bad Request\n{ "status": "error", "message": "Missing required alert information." }
+else Invalid API key
+  Alerts-->>Client: 401 Unauthorized\n{ "status": "error", "message": "Unauthorized" }
+else Duplicate event
         Alerts-->>Client: 200 OK\n{ "status": "sent", "message": "Duplicate ignored" }
-    end
-
+end
+```
 
 ### Authentication Rules
 All POST requests require a valid API key in the Authorization header.
