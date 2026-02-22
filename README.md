@@ -85,7 +85,7 @@ Duplicate event:
 }
 ```
 
-```
+```mermaid
 sequenceDiagram
 participant Client as Client Application
 participant Alerts as Alerts Service
